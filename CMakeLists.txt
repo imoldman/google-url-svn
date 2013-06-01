@@ -15,8 +15,6 @@ file(GLOB src RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     "src/url_canon_fileurl.cc",
     "src/url_canon_filesystemurl.cc",
     "src/url_canon_host.cc",
-    #"src/url_canon_icu.cc",
-    #"src/url_canon_icu.h",
     "src/url_canon_internal.cc",
     "src/url_canon_internal.h",
     "src/url_canon_internal_file.h",
@@ -38,7 +36,13 @@ file(GLOB src RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     "src/url_util.h",
     )
 file(GLOB base RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
-    "base/*.h"
-    #"base/*.cc"
+    "base/basictypes.h"
+    "base/logging.h"
+    "base/string16.h"
+    "base/scoped_ptr.h"
     )
-add_library(gurl ${base} ${src})
+file(GLOB fake RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+    "fake/read_utf_char.cc"
+    "fake/idn_to_ascii.cc"
+    )
+add_library(gurl ${base} ${src} ${fake})
